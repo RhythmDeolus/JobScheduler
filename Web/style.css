@@ -1,0 +1,36 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+.columns.is-vertical {
+  flex-direction: column;
+}
+.slide {
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+/* h1 {
+    text-align: center;
+}
+
+#outtable {
+    border: solid 1px black;
+    width: 100%;
+}
+
+#outtable td,  th {
+    border: solid 1px black;
+}
+
+#chart {
+    width: 100%;
+    height: auto;
+} */

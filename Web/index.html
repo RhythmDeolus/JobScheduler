@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./chronometers.ico">
+    <link rel="stylesheet" href="./style.css">
+    <title>Job Scheduler</title>
+</head>
+<body>
+    <div class="hero is-success p-5">
+        <div class="columns is-vcentered">
+                <h1 class="title column ">Job Scheduler</h1> 
+        </div>
+    </div>
+    <div class="hero has-text-centered has-background-light p-10" id="input">
+        <div class="columns is-variable is-8 p-5">
+            <div class="column columns is-vertical ">
+                <div class="column columns field">
+                    <label for="algo-type" class="column m-auto label">Select Algorithm</label>
+                    <div class="control column m-auto">
+                        <div class="select">
+                            <select name="algo-type" id="algo-type" class="input">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <form id="inputform" class="columns is-vertical">
+                        <div class="column field columns">
+                            <label for="time_quantum" class="label column m-auto">Time Quantum</label>
+                            <div class="control column m-auto">
+                                <input type="text" name="time_quantum" autocomplete="off" id="time_quantum" pattern="[0-9]" class="input">
+                            </div>
+                        </div>
+                        <div class="column columns">
+                            <div class="column">
+                                <input type="submit" value="Calculate" class="button **islarge is-rounded is-success">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="column">
+                <form id="entry" class="columns is-vertical">
+                    <div class="column columns field">
+                        <label for="p-name" class="column label is-half">Process Name</label>
+                        <div class="control m-auto-column">
+                            <input type="text" name="p-name" autocomplete="off" id="p-name" pattern="[a-z]+" class="input" required>
+                        </div>
+                    </div>
+                    <div class="column columns field">
+                        <label for="p-at" class="column label is-half">Arrival Time</label>
+                        <div class="control m-auto-column">
+                            <input type="text" name="p-at" id="p-at" autocomplete="off" pattern="[0-9]+" class="input" required>
+                        </div>
+                    </div>
+                    <div class="column columns field">
+                        <label for="p-bt" class="column label is-half">Burst Time</label>
+                        <div class="control m-auto-column">
+                            <input type="text" name="p-bt" id="p-bt" autocomplete="off" pattern="[0-9]+" class="input" required>
+                        </div>
+                    </div>
+                    <div class="column columns field">
+                        <label for="p-pri" class="column label is-half">Priority</label>
+                        <div class="control m-auto-column">
+                            <input type="text" name="p-pri" id="p-pri" autocomplete="off" pattern="[0-9]" class="input" required>
+                        </div>
+                    </div>
+                    <div class="column columns">
+                        <div class="column">
+                            <input class="button **is-large is-success is-rounded**" type="submit" value="Add Process">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="output" class="hero has-text-centered" >
+        <table id="outtable" class="table is-bordered has-text-centered">
+            <tr>
+                <th>Process Name</th>
+                <th>Priority</th>
+                <th>Arival Time</th>
+                <th>Burst Time</th>
+                <th>Completion Time</th>
+                <th>Turnaround Time</th>
+                <th>Waiting Time</th>
+                <th>Response Time</th>
+            </tr>
+        </table>
+        <div>
+            <div class="is-size-3 is-uppercase has-text-weight-medium">Gantt Chart</div>
+            <div id="chart">
+                <canvas></canvas>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
