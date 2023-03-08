@@ -1,4 +1,8 @@
 .vscode/
-__pycache__
+__pycache__/
 input.txt
 main.py
+build/
+dist/
+venv/
+app.spec

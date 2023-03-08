@@ -11,7 +11,7 @@ class InputParser:
         return InputParser.parser
 
     def parse(self, input) -> Input:
-        print(input)
+        # print(input)
         file = input
         file = file.split('\n')
 

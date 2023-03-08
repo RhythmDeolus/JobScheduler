@@ -35,7 +35,7 @@ def calculate_scheduling_python(input, func):
     possibles.update(locals())
     method = possibles.get(func)
     output : Output = method(inp)
-    output.printOutput()
+    # output.printOutput()
     return output.Objectify()
 
 eel.start("index.html")
