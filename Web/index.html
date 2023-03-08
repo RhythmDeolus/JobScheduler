@@ -31,7 +31,7 @@
                         <div class="column field columns">
                             <label for="time_quantum" class="label column m-auto">Time Quantum</label>
                             <div class="control column m-auto">
-                                <input type="text" name="time_quantum" autocomplete="off" id="time_quantum" pattern="[0-9]" class="input">
+                                <input type="text" name="time_quantum" maxlength="5" autocomplete="off" id="time_quantum" pattern="[0-9]" class="input">
                             </div>
                         </div>
                         <div class="column columns">
@@ -47,25 +47,25 @@
                     <div class="column columns field">
                         <label for="p-name" class="column label is-half">Process Name</label>
                         <div class="control m-auto-column">
-                            <input type="text" name="p-name" autocomplete="off" id="p-name" pattern="[a-z]+" class="input" required>
+                            <input type="text" name="p-name" maxlength="10" autocomplete="off" id="p-name" pattern="[a-z]+" class="input" required>
                         </div>
                     </div>
                     <div class="column columns field">
                         <label for="p-at" class="column label is-half">Arrival Time</label>
                         <div class="control m-auto-column">
-                            <input type="text" name="p-at" id="p-at" autocomplete="off" pattern="[0-9]+" class="input" required>
+                            <input type="text" name="p-at" maxlength="5" id="p-at" autocomplete="off" pattern="[0-9]+" class="input" required>
                         </div>
                     </div>
                     <div class="column columns field">
                         <label for="p-bt" class="column label is-half">Burst Time</label>
                         <div class="control m-auto-column">
-                            <input type="text" name="p-bt" id="p-bt" autocomplete="off" pattern="[0-9]+" class="input" required>
+                            <input type="text" name="p-bt" maxlength="5" id="p-bt" autocomplete="off" pattern="[0-9]+" class="input" required>
                         </div>
                     </div>
                     <div class="column columns field">
                         <label for="p-pri" class="column label is-half">Priority</label>
                         <div class="control m-auto-column">
-                            <input type="text" name="p-pri" id="p-pri" autocomplete="off" pattern="[0-9]" class="input" required>
+                            <input type="text" name="p-pri" maxlength="1" id="p-pri" autocomplete="off" pattern="[0-9]" class="input" required>
                         </div>
                     </div>
                     <div class="column columns">

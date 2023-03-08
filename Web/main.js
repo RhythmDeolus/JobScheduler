@@ -18,6 +18,12 @@ document.body.onload = function() {
     // debugger;
 }
 
+window.onresize = function() {
+    let h = calcHeight(gchart)
+    setChartdim(window.innerWidth, h)
+    drawGChart(gchart);
+}
+
 processes = {}
 
 function getRow(...args) {
@@ -136,10 +142,47 @@ function getColor(name) {
     return val
 }
 
-function drawGChart(chart) {
+var gchart = []
+
+function calcHeight(chart) {
     let can_elem = document.querySelector('#chart > canvas');
-    can_elem.height = can_elem.parentElement.clientHeight;
-    can_elem.width = can_elem.parentElement.clientWidth;
+    let ctx = can_elem.getContext("2d");
+    let m = 50;
+    let cw = 0;
+    let ch = m + 60;
+    let nr = 1;
+    for (key in chart) {
+        let x = chart[key]
+        let dim = ctx.measureText(x[1])
+        let t = dim.width <= 60 || x[1] == null ? 60 : dim.width;
+        if ((cw + t + 2 *m) > can_elem.width) {
+            nr++;
+            cw = 0
+        } else {
+            cw += t;
+        }
+    }
+    nr++;
+    ch = nr * 60 + (nr + 1) * 50;
+    console.log("number of rows: " ,nr)
+    console.log('calculated height:', ch);
+
+    return ch;
+
+}
+
+function setChartdim(width, height) {
+    let chartdiv = document.getElementById('chart');
+    let canv = document.querySelector('#chart > canvas');
+    canv.width = chartdiv.clientWidth
+    canv.height = height
+}
+
+function drawGChart(chart) {
+    gchart = chart
+    let calh = calcHeight(gchart);
+    let can_elem = document.querySelector('#chart > canvas');
+    setChartdim(window.innerWidth, calh)
     let ctx = can_elem.getContext('2d');
     // console.log(ctx.fillStyle)
     ctx.fillStyle = "white";
@@ -148,7 +191,7 @@ function drawGChart(chart) {
     for (key in chart) {
         let box_size_x = 60
         let box_size_y = 60
-        x = chart[key]
+        let x = chart[key]
         // console.log(pos)
         colr = getColor(x[1])
         ctx.fillStyle = colr[0];
@@ -163,11 +206,19 @@ function drawGChart(chart) {
             if (dim.width > box_size_x) box_size_x = dim.width;
             // console.log("Box size: ", box_size_x);
             // console.log("Dimension Text: ", dim.width);
+            if (pos[0] + box_size_x + 50 > can_elem.width) {
+                pos[0] = 50;
+                pos[1] += 50 + box_size_y;
+            }
             ctx.textBaseline = "center";
             ctx.fillRect(pos[0], pos[1], box_size_x, box_size_y)
             ctx.fillStyle = colr[1]
             ctx.fillText(x[1], pos[0] + (box_size_x-dim.width) / 2, pos[1] + (box_size_y)/2)
         } else {
+            if (pos[0] + box_size_x + 50 > can_elem.width) {
+                pos[0] = 50;
+                pos[1] += 50 + box_size_y;
+            }
             ctx.fillRect(pos[0], pos[1], box_size_x, box_size_y);
         }
         ctx.beginPath();
